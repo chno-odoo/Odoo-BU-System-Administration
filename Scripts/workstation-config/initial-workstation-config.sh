@@ -5,8 +5,8 @@ set -e  # Exit on error
 
 # This script will be used to create the initial configuration for new hire laptops and cleaning up configuration from Odoo BE image to work better for BU.
 # Written by chno
-# Last updated: Mon Oct  7 12:56:32 PM EDT 2024
-# Last update: Fixed permission issues on wifi powersaver.
+# Last updated: Mon Oct 14 11:19:45 AM EDT 2024
+# Last update: Added TLP for powersaving.
 
 echo "Starting system updates..."
 
@@ -31,6 +31,19 @@ sudo apt install zram-tools -y
 # Install htop for system monitoring.
 echo "Installing htop..."
 sudo apt install htop -y
+
+# Install TLP for powersaving.
+echo "Install tlp..."
+sudo apt install tlp -y
+
+# Start tlp and tlp.service.
+echo "Enabling TLP and the TLP service..."
+sudo tlp start
+sudo systemctl enable tlp.service
+
+# Check whether TLP enablement was successful.
+if [ $? -ne 0 ]; then
+	echo "Failed to start TLP service..."
 
 # Phase 2: Configuration
 
