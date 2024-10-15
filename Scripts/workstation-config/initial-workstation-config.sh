@@ -5,8 +5,8 @@ set -e  # Exit on error
 
 # This script will be used to create the initial configuration for new hire laptops and cleaning up configuration from Odoo BE image to work better for BU.
 # Written by chno
-# Last updated: Mon Oct 14 11:19:45 AM EDT 2024
-# Last update: Added TLP for powersaving.
+# Last updated: Tue Oct 15 10:28:37 AM EDT 2024
+# Last update: Fixed fi closing on if statement within TLP enablement.
 
 echo "Starting system updates..."
 
@@ -44,6 +44,7 @@ sudo systemctl enable tlp.service
 # Check whether TLP enablement was successful.
 if [ $? -ne 0 ]; then
 	echo "Failed to start TLP service..."
+fi
 
 # Phase 2: Configuration
 
