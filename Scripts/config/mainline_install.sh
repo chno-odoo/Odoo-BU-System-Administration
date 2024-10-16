@@ -6,11 +6,11 @@
 # Last Update:N/A
 
 echo "Adding repo..."
-sudo apt-add-repository -y ppa:cappelikan/ppa
+sudo add-apt-repository ppa:cappelikan/ppa -y
 
 echo "Updating packages..."
-sudo apt update
+sudo apt update && sudo apt upgrade -y
 
 echo "Installing mainline..."
-sudo apt install mainline
+sudo apt install -y mainline
 
