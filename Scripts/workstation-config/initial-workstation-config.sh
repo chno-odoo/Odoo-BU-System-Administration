@@ -5,8 +5,8 @@ set -e  # Exit on error
 
 # This script will be used to create the initial configuration for new hire laptops and cleaning up configuration from Odoo BE image to work better for BU.
 # Written by chno
-# Last updated: Tue Oct 15 10:28:37 AM EDT 2024
-# Last update: Fixed fi closing on if statement within TLP enablement.
+# Last updated: Tue Oct 22 10:33:16 AM EDT 2024
+# Last update: Removed wifi power saving.
 
 echo "Starting system updates..."
 
@@ -127,17 +127,6 @@ sudo ufw allow out 465/tcp
 
 echo "Firewall settings done...Enabling logging..."
 sudo ufw logging medium
-
-### Wifi Powersaving Disablement ###
-echo "Disabling Wi-Fi power saving..."
-echo "[connection]" | sudo tee /etc/NetworkManager/conf.d/wifi-powersaver.conf > /dev/null
-echo "wifi.powersaver = 2" | sudo tee -a /etc/NetworkManager/conf.d/wifi-powersaver.conf > /dev/null
-
-echo "Wi-Fi power saving has been disabled. Restarting Network manager..."
-
-sudo systemctl restart NetworkManager
-
-echo "Network Manager restarted..."
 
 echo "Script execution completed. Consider rebooting the system to ensure all updates are applied."
 
